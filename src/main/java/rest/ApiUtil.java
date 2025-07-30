@@ -333,20 +333,6 @@ public class ApiUtil {
 		return new CustomResponse(response, statusCode, status, id, name);
 	}
 
-	public CustomResponse PutVimEmp(String endpoint, String cookieValue, String requestBody) {
-
-		Response response = null;
-
-		int statusCode = 0;
-		String status = null;
-
-		Object id = null;
-		Object name = null;
-		Object lastName = null;
-
-		return new CustomResponse(response, statusCode, status, id, name, lastName);
-	}
-
 	/**
 	 * Sends a POST request to the specified endpoint with a cookie and JSON string
 	 * payload.
