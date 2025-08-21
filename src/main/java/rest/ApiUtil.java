@@ -109,8 +109,7 @@ public class ApiUtil {
 	}
 
 	/**
-	 * Sends a GET request to the specified endpoint with a cookie and optional
-	 * request body.
+	 * Sends a GET request to the specified endpoint with a cookie.
 	 *
 	 * <p>
 	 * This method uses RestAssured to construct and send a GET request to the given
@@ -145,8 +144,7 @@ public class ApiUtil {
 	}
 
 	/**
-	 * Sends a GET request to the specified endpoint with a cookie and optional
-	 * request body.
+	 * Sends a GET request to the specified endpoint with a cookie.
 	 *
 	 * <p>
 	 * This method constructs a GET request using RestAssured, attaching a cookie
@@ -178,8 +176,7 @@ public class ApiUtil {
 	}
 
 	/**
-	 * Executes a GET request to the given endpoint using a specified cookie and
-	 * optional request body.
+	 * Executes a GET request to the given endpoint using a specified cookie.
 	 *
 	 * <p>
 	 * This method prepares a GET request with RestAssured, attaching a cookie named
@@ -207,35 +204,7 @@ public class ApiUtil {
 
 	/**
 	 * Sends a GET request to the specified API endpoint with an authentication
-	 * cookie and optional body.
-	 *
-	 * <p>
-	 * This method utilizes RestAssured to perform a GET request to the provided
-	 * endpoint. It includes a cookie named <code>orangehrm</code> with the
-	 * specified value and sets the <code>Content-Type</code> to
-	 * <code>application/json</code>. If a request body is provided, it is attached
-	 * to the request.
-	 *
-	 * @param endpoint    the relative endpoint path to be appended to the base URL
-	 * @param cookieValue the value of the <code>orangehrm</code> cookie for session
-	 *                    handling or authentication
-	 * @param body        a map containing request body parameters (optional; may be
-	 *                    null)
-	 * @return the {@code Response} object containing the results of the GET request
-	 */
-	public CustomResponse DeletePim(String deleteEndPoint, String cookieValue, String requestBody) {
-
-		Response response = null;
-		int statusCode = 0;
-		String status = null;
-		Object dataValue = null;
-
-		return new CustomResponse(response, statusCode, status, dataValue);
-	}
-
-	/**
-	 * Sends a GET request to the specified API endpoint with an authentication
-	 * cookie and optional body.
+	 * cookie.
 	 *
 	 * <p>
 	 * This method utilizes RestAssured to perform a GET request to the provided
@@ -268,8 +237,7 @@ public class ApiUtil {
 	}
 
 	/**
-	 * Performs a GET request to the specified endpoint with a provided cookie and
-	 * optional request body.
+	 * Performs a GET request to the specified endpoint with a provided cookie.
 	 *
 	 * <p>
 	 * This method constructs a GET request using RestAssured, sets the
@@ -303,8 +271,7 @@ public class ApiUtil {
 	}
 
 	/**
-	 * Sends a PUT request to the specified endpoint with a cookie and optional
-	 * request body.
+	 * Sends a PUT request to the specified endpoint with a cookie and request body.
 	 *
 	 * <p>
 	 * This method constructs a PUT request using RestAssured, sets the
@@ -316,7 +283,8 @@ public class ApiUtil {
 	 *                    appended to the base URL
 	 * @param cookieValue the value of the <code>orangehrm</code> cookie for session
 	 *                    or authorization purposes
-	 * @param requestBody an object representing the request body (can be null)
+	 * @param requestBody an object representing the request body (must be attached
+	 *                    in request)
 	 * @return the {@link io.restassured.response.Response} returned from the PUT
 	 *         request
 	 */
@@ -333,18 +301,33 @@ public class ApiUtil {
 		return new CustomResponse(response, statusCode, status, id, name);
 	}
 
-	public CustomResponse PutVimEmp(String endpoint, String cookieValue, String requestBody) {
+	/**
+	 * Sends a DELETE request to the specified API endpoint with an authentication
+	 * cookie and request body.
+	 *
+	 * <p>
+	 * This method utilizes RestAssured to perform a GET request to the provided
+	 * endpoint. It includes a cookie named <code>orangehrm</code> with the
+	 * specified value and sets the <code>Content-Type</code> to
+	 * <code>application/json</code>. Request body is provided, it must be attached
+	 * to the request.
+	 *
+	 * @param endpoint    the relative endpoint path to be appended to the base URL
+	 * @param cookieValue the value of the <code>orangehrm</code> cookie for session
+	 *                    handling or authentication
+	 * @param requestBody an object representing the request body (must be attached
+	 *                    in request)
+	 * @return the {@code Response} object containing the results of the DELETE
+	 *         request
+	 */
+	public CustomResponse DeletePim(String deleteEndPoint, String cookieValue, String requestBody) {
 
 		Response response = null;
-
 		int statusCode = 0;
 		String status = null;
+		Object dataValue = null;
 
-		Object id = null;
-		Object name = null;
-		Object lastName = null;
-
-		return new CustomResponse(response, statusCode, status, id, name, lastName);
+		return new CustomResponse(response, statusCode, status, dataValue);
 	}
 
 	/**
@@ -355,8 +338,8 @@ public class ApiUtil {
 	 * This method uses RestAssured to perform a POST request to the given endpoint.
 	 * It sets the <code>Content-Type</code> header to
 	 * <code>application/json</code>, includes a cookie named
-	 * <code>orangehrm</code>, and attaches the provided JSON string as the request
-	 * body.
+	 * <code>orangehrm</code>, and attaches the provided requestBody string as the
+	 * request body.
 	 *
 	 * @param endpoint    the relative URL endpoint for the POST request, appended
 	 *                    to the base URL
@@ -379,6 +362,58 @@ public class ApiUtil {
 		return new CustomResponse(response, statusCode, status, employeeId, firstName);
 	}
 
+	/**
+	 * Sends a PUT request to the specified endpoint with a cookie and optional
+	 * request body.
+	 *
+	 * <p>
+	 * This method constructs a PUT request using RestAssured, sets the
+	 * <code>Content-Type</code> header to <code>application/json</code>, and
+	 * includes a cookie named <code>orangehrm</code>. Request body is provided, it
+	 * must be attached to the request.
+	 *
+	 * @param endpoint    the relative endpoint to which the PUT request is sent,
+	 *                    appended to the base URL
+	 * @param cookieValue the value of the <code>orangehrm</code> cookie for session
+	 *                    or authorization purposes
+	 * @param requestBody an object representing the request body (must be attached
+	 *                    in request)
+	 * @return the {@link io.restassured.response.Response} returned from the PUT
+	 *         request
+	 */
+	public CustomResponse PutVimEmp(String endpoint, String cookieValue, String requestBody) {
+
+		Response response = null;
+
+		int statusCode = 0;
+		String status = null;
+
+		Object id = null;
+		Object name = null;
+		Object lastName = null;
+
+		return new CustomResponse(response, statusCode, status, id, name, lastName);
+	}
+
+	/**
+	 * Sends a DELETE request to the specified endpoint with a cookie and optional
+	 * request body.
+	 *
+	 * <p>
+	 * This method constructs a DELETE request using RestAssured, sets the
+	 * <code>Content-Type</code> header to <code>application/json</code>, and
+	 * includes a cookie named <code>orangehrm</code>. Request body is provided, it
+	 * must be attached to the request.
+	 *
+	 * @param endpoint    the relative endpoint to which the DELETE request is sent,
+	 *                    appended to the base URL
+	 * @param cookieValue the value of the <code>orangehrm</code> cookie for session
+	 *                    or authorization purposes
+	 * @param requestBody an object representing the request body (must be attached
+	 *                    in request)
+	 * @return the {@link io.restassured.response.Response} returned from the DELETE
+	 *         request
+	 */
 	public CustomResponse DeletePimEmp(String endpoint, String cookieValue, String requestBody) {
 
 		Response response = null;
