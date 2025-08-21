@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.example</groupId>
-	<artifactId>Benchmark_RestAssured_JSON_PL1_8</artifactId>
+	<artifactId>RestAssured_JSON_PL1_8_Template</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
 	<properties>
